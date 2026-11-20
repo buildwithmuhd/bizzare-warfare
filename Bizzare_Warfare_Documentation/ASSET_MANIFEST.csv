@@ -1,0 +1,10 @@
+asset_id,asset_name,category,source,author,license,attribution_required,modified,local_path,date_acquired,notes
+CHR001,Default Player,Character,TBD,TBD,TBD,TBD,false,Assets/Characters/,TBD,TBD
+CHR002,Bot Character 01,Character,TBD,TBD,TBD,TBD,false,Assets/Characters/,TBD,TBD
+WPN001,Assault Rifle,Weapon,TBD,TBD,TBD,TBD,false,Assets/Weapons/,TBD,TBD
+WPN002,Knife,Weapon,TBD,TBD,TBD,TBD,false,Assets/Weapons/,TBD,TBD
+MAP001,Industrial Arena,Map,TBD,TBD,TBD,TBD,false,Assets/Maps/,TBD,TBD
+MAP002,Urban Rooftop,Map,TBD,TBD,TBD,TBD,false,Assets/Maps/,TBD,TBD
+MAP003,Maze Arena,Map,TBD,TBD,TBD,TBD,false,Assets/Maps/,TBD,TBD
+SFX001,Rifle Fire,Audio,TBD,TBD,TBD,TBD,false,Assets/Audio/,TBD,TBD
+SFX002,Player Footsteps,Audio,TBD,TBD,TBD,TBD,false,Assets/Audio/,TBD,TBD

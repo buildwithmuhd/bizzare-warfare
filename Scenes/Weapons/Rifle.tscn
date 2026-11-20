@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Weapons/Rifle.cs" id="1_rifle"]
+[ext_resource type="PackedScene" path="res://Assets/sci-fi/glTF/Gun_Rifle.gltf" id="2_model"]
+
+[sub_resource type="BoxMesh" id="ReceiverMesh"]
+size = Vector3(0.19, 0.15, 0.62)
+
+[sub_resource type="StandardMaterial3D" id="ReceiverMaterial"]
+albedo_color = Color(0.08, 0.11, 0.15, 1)
+metallic = 0.75
+roughness = 0.28
+
+[sub_resource type="SphereMesh" id="FlashMesh"]
+radius = 0.07
+height = 0.14
+
+[sub_resource type="StandardMaterial3D" id="FlashMaterial"]
+albedo_color = Color(1, 0.64, 0.08, 1)
+emission_enabled = true
+emission = Color(1, 0.12, 0.005, 1)
+emission_energy_multiplier = 6.0
+
+[node name="Rifle" type="Node3D" groups=["player_weapon"]]
+script = ExtResource("1_rifle")
+WeaponName = "AR-7 Rifle"
+Damage = 25.0
+FireRate = 10.0
+MagazineCapacity = 30
+StartingReserveAmmo = 90
+ReloadDuration = 1.55
+CameraPath = NodePath("..")
+
+[node name="QuaterniusRifle" parent="." instance=ExtResource("2_model")]
+position = Vector3(0.35, -0.3, -0.8)
+rotation_degrees = Vector3(0, 180, 0)
+scale = Vector3(0.025, 0.025, 0.025)
+
+[node name="PrototypeReceiver" type="MeshInstance3D" parent="."]
+position = Vector3(0.35, -0.3, -0.72)
+mesh = SubResource("ReceiverMesh")
+material_override = SubResource("ReceiverMaterial")
+
+[node name="Muzzle" type="Node3D" parent="."]
+position = Vector3(0.23, -0.22, -0.82)
+
+[node name="MuzzleMesh" type="MeshInstance3D" parent="Muzzle"]
+mesh = SubResource("FlashMesh")
+material_override = SubResource("FlashMaterial")
+
+[node name="MuzzleLight" type="OmniLight3D" parent="Muzzle"]
+light_color = Color(1, 0.42, 0.06, 1)
+light_energy = 4.0
+omni_range = 3.0

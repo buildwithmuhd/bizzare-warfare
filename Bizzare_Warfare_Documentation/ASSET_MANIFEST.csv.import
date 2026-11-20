@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bq6b7ghpi4864"
+
+[deps]
+
+files=["res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.asset.translation", "res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.category.translation", "res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.source.translation", "res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.author.translation", "res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.license.translation", "res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.attribution.translation", "res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.modified.translation", "res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.local.translation", "res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.date.translation", "res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.notes.translation"]
+
+source_file="res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.csv"
+dest_files=["res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.asset.translation", "res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.category.translation", "res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.source.translation", "res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.author.translation", "res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.license.translation", "res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.attribution.translation", "res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.modified.translation", "res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.local.translation", "res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.date.translation", "res://Bizzare_Warfare_Documentation/ASSET_MANIFEST.notes.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

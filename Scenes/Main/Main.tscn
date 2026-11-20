@@ -1,0 +1,215 @@
+[gd_scene load_steps=18 format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Player/Player.tscn" id="1_player"]
+[ext_resource type="Script" path="res://Scripts/UI/AmmoHud.cs" id="2_hud"]
+[ext_resource type="Script" path="res://Scripts/Weapons/TestTarget.cs" id="3_target"]
+[ext_resource type="Script" path="res://Scripts/Weapons/Damageable.cs" id="4_damageable"]
+
+[sub_resource type="Environment" id="Environment_main"]
+background_mode = 1
+background_color = Color(0.035, 0.05, 0.09, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.35, 0.45, 0.7, 1)
+ambient_light_energy = 0.55
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="FloorMaterial"]
+albedo_color = Color(0.075, 0.11, 0.16, 1)
+metallic = 0.35
+roughness = 0.55
+
+[sub_resource type="StandardMaterial3D" id="WallMaterial"]
+albedo_color = Color(0.12, 0.2, 0.3, 1)
+metallic = 0.45
+roughness = 0.42
+
+[sub_resource type="StandardMaterial3D" id="AccentMaterial"]
+albedo_color = Color(0.08, 0.55, 0.95, 1)
+emission_enabled = true
+emission = Color(0.02, 0.24, 0.8, 1)
+emission_energy_multiplier = 2.5
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(32, 0.5, 32)
+material = SubResource("FloorMaterial")
+
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(32, 0.5, 32)
+
+[sub_resource type="BoxMesh" id="WallXMesh"]
+size = Vector3(32, 4, 0.6)
+material = SubResource("WallMaterial")
+
+[sub_resource type="BoxShape3D" id="WallXShape"]
+size = Vector3(32, 4, 0.6)
+
+[sub_resource type="BoxMesh" id="WallZMesh"]
+size = Vector3(0.6, 4, 32)
+material = SubResource("WallMaterial")
+
+[sub_resource type="BoxShape3D" id="WallZShape"]
+size = Vector3(0.6, 4, 32)
+
+[sub_resource type="BoxMesh" id="CoverMesh"]
+size = Vector3(2.5, 1.8, 1.2)
+material = SubResource("AccentMaterial")
+
+[sub_resource type="BoxShape3D" id="CoverShape"]
+size = Vector3(2.5, 1.8, 1.2)
+
+[sub_resource type="CylinderMesh" id="TargetMesh"]
+top_radius = 0.65
+bottom_radius = 0.65
+height = 2.4
+
+[sub_resource type="StandardMaterial3D" id="TargetMaterial"]
+albedo_color = Color(0.8, 0.16, 0.12, 1)
+emission_enabled = true
+emission = Color(0.25, 0.01, 0.005, 1)
+emission_energy_multiplier = 0.7
+
+[sub_resource type="CylinderShape3D" id="TargetShape"]
+radius = 0.65
+height = 2.4
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_main")
+
+[node name="KeyLight" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-58, -30, 0)
+light_color = Color(0.68, 0.8, 1, 1)
+light_energy = 1.4
+shadow_enabled = true
+
+[node name="ArenaLight" type="OmniLight3D" parent="."]
+position = Vector3(0, 6, 0)
+light_color = Color(0.1, 0.5, 1, 1)
+light_energy = 5.0
+omni_range = 18.0
+
+[node name="Floor" type="StaticBody3D" parent="."]
+position = Vector3(0, -0.25, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("FloorMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("FloorShape")
+
+[node name="NorthWall" type="StaticBody3D" parent="."]
+position = Vector3(0, 2, -16)
+
+[node name="Mesh" type="MeshInstance3D" parent="NorthWall"]
+mesh = SubResource("WallXMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="NorthWall"]
+shape = SubResource("WallXShape")
+
+[node name="SouthWall" type="StaticBody3D" parent="."]
+position = Vector3(0, 2, 16)
+
+[node name="Mesh" type="MeshInstance3D" parent="SouthWall"]
+mesh = SubResource("WallXMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="SouthWall"]
+shape = SubResource("WallXShape")
+
+[node name="WestWall" type="StaticBody3D" parent="."]
+position = Vector3(-16, 2, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="WestWall"]
+mesh = SubResource("WallZMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="WestWall"]
+shape = SubResource("WallZShape")
+
+[node name="EastWall" type="StaticBody3D" parent="."]
+position = Vector3(16, 2, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="EastWall"]
+mesh = SubResource("WallZMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="EastWall"]
+shape = SubResource("WallZShape")
+
+[node name="CoverA" type="StaticBody3D" parent="."]
+position = Vector3(-4, 0.9, -3)
+
+[node name="Mesh" type="MeshInstance3D" parent="CoverA"]
+mesh = SubResource("CoverMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="CoverA"]
+shape = SubResource("CoverShape")
+
+[node name="CoverB" type="StaticBody3D" parent="."]
+position = Vector3(5, 0.9, 4)
+rotation_degrees = Vector3(0, 28, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="CoverB"]
+mesh = SubResource("CoverMesh")
+
+[node name="Collision" type="CollisionShape3D" parent="CoverB"]
+shape = SubResource("CoverShape")
+
+[node name="TestTarget" type="StaticBody3D" parent="."]
+position = Vector3(0, 1.2, -5)
+script = ExtResource("3_target")
+
+[node name="Mesh" type="MeshInstance3D" parent="TestTarget"]
+mesh = SubResource("TargetMesh")
+material_override = SubResource("TargetMaterial")
+
+[node name="Collision" type="CollisionShape3D" parent="TestTarget"]
+shape = SubResource("TargetShape")
+
+[node name="Damageable" type="Node" parent="TestTarget"]
+script = ExtResource("4_damageable")
+MaximumHealth = 100.0
+
+[node name="HealthLabel" type="Label3D" parent="TestTarget"]
+billboard = 1
+position = Vector3(-0.65, 1.7, 0)
+modulate = Color(1, 0.86, 0.6, 1)
+text = "TARGET 100"
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector3(0, 1.0, 10)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("2_hud")
+
+[node name="Crosshair" type="Label" parent="HUD"]
+offset_left = 630.0
+offset_top = 330.0
+offset_right = 650.0
+offset_bottom = 350.0
+theme_override_colors/font_color = Color(0.5, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "+"
+
+[node name="Ammo" type="Label" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -290.0
+offset_top = -72.0
+offset_right = -24.0
+offset_bottom = -24.0
+theme_override_colors/font_color = Color(0.62, 0.88, 1, 1)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 2
+text = "RIFLE 30 / 090"
+
+[node name="Instructions" type="Label" parent="HUD"]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 560.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(0.76, 0.9, 1, 0.9)
+theme_override_font_sizes/font_size = 18
+text = "BIZZARE WARFARE // PROTOTYPE\nWASD move • Shift sprint • Space jump • LMB fire • R reload • Esc release mouse"
